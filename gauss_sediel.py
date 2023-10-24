@@ -51,15 +51,15 @@ if __name__ == "__main__":
     # INGRESO
     A = np.loadtxt('matriz_d_x.txt', skiprows=0)
     B = np.loadtxt('result_d_x.txt', skiprows=0)
-    #C = np.loadtxt('matriz_Y_A.txt', skiprows=0)
-    #D = np.loadtxt('matriz_Y_B.txt', skiprows=0)
+    C = np.loadtxt('matriz_d_y.txt', skiprows=0)
+    D = np.loadtxt('result_d_y.txt', skiprows=0)
     X = resolver_gaus_seidel(A, B)
-    #Y = resolver_gaus_seidel(C, D)
+    Y = resolver_gaus_seidel(C, D)
 
     matriz_n = 9 # Filas
     matriz_m = 11 # columnas
 
-    Solucion = [
+    Solucion1 = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, X[0], 0, 0, 0, X[1], X[2], X[3], X[4], X[5], 0],
         [1, X[6], 0, 0, 0, X[7], X[8], X[9], X[10], 0, 0],
@@ -71,8 +71,20 @@ if __name__ == "__main__":
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
 
+    Solucion2 = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, Y[0], 0, 0, 0, Y[1], Y[2], Y[3], Y[4], Y[5], 0],
+        [0, Y[6], 0, 0, 0, Y[7], Y[8], Y[9], Y[10], 0, 0],
+        [0, Y[11], Y[12], Y[13], Y[14], Y[15], Y[16], Y[17], 0, 0, 0],
+        [0, Y[18], Y[19], Y[20], 0, 0, 0, Y[21], 0, 0, 0],
+        [0, Y[22], Y[23], Y[24], 0, 0, 0, Y[25], Y[26], 0, 0],
+        [0, Y[27], Y[28], Y[29], 0, 0, 0, Y[30], Y[31], Y[32], 0],
+        [0, Y[33], Y[34], Y[35], 0, 0, 0, Y[36], Y[37], Y[38], 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+
     plt.figure()
-    plt.imshow(Solucion)
+    plt.imshow(Solucion2)
     plt.title( "2-D Heat Map" )
     plt.colorbar()
     plt.show()
