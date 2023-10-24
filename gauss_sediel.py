@@ -6,7 +6,7 @@ A es una matriz cuadrada de NxN con la diagonal principal dominante
 B es un vector con los coeficientes independientes en el sistema de ecuaciones de tamaño N
 """
 def resolver_gaus_seidel(A, B, iteramax = 20):
-    tolera = 0.0001
+    tolera = 0.000001
 
     # PROCEDIMIENTO
     # Gaus-Seidel
