@@ -100,12 +100,163 @@ if __name__ == "__main__":
     m_funcion_jacobiana_x[6][7] = (lambda U,V: (V[6] / 2) - 1 )
     m_funcion_jacobiana_x[6][0] = (lambda U,V: -1*(V[6] / 2) - 1 )
 
-    m_funcion_jacobiana_x[7][4] = (lambda U,V: (1/2)*(U[5] - U[3]) + 4 )
-    m_funcion_jacobiana_x[7][5] = (lambda U,V: (U[4] / 2) - 1 )
-    m_funcion_jacobiana_x[7][3] = (lambda U,V: -1*(U[4] / 2) - 1 )
-    m_funcion_jacobiana_x[7][10] = (lambda U,V: (V[4] / 2) - 1 )
-   
+    m_funcion_jacobiana_x[7][7] = (lambda U,V: (U[8] / 2) + 4 )
+    m_funcion_jacobiana_x[7][8] = (lambda U,V: (U[7] / 2) - 1 )
+    m_funcion_jacobiana_x[7][15] = (lambda U,V: (V[7] / 2) - 1 )
+    m_funcion_jacobiana_x[7][2] = (lambda U,V: -1*(V[7] / 2) - 1 )
+
+    m_funcion_jacobiana_x[8][8] = (lambda U,V: (1/2)*(U[9] - U[7]) + 4 )
+    m_funcion_jacobiana_x[8][9] = (lambda U,V: (U[8] / 2) - 1 )
+    m_funcion_jacobiana_x[8][7] = (lambda U,V: -1*(U[8] / 2) - 1 )
+    m_funcion_jacobiana_x[8][16] = (lambda U,V: (V[8] / 2) - 1 )
+    m_funcion_jacobiana_x[8][3] = (lambda U,V: -1*(V[8] / 2) - 1 )
     
+    m_funcion_jacobiana_x[9][9] = (lambda U,V: (1/2)*(U[10] - U[8]) + 4 )
+    m_funcion_jacobiana_x[9][9] = (lambda U,V: (U[9] / 2) - 1 )
+    m_funcion_jacobiana_x[9][7] = (lambda U,V: -1*(U[9] / 2) - 1 )
+    m_funcion_jacobiana_x[9][17] = (lambda U,V: (V[9] / 2) - 1 )
+    m_funcion_jacobiana_x[9][4] = (lambda U,V: -1*(V[9] / 2) - 1 )
+
+    m_funcion_jacobiana_x[10][10] = (lambda U,V: (-1*U[9]) + 4 )
+    m_funcion_jacobiana_x[10][9] = (lambda U,V: -1*(U[10] / 2) - 1 )
+    m_funcion_jacobiana_x[10][5] = (lambda U,V: -1*(V[10] / 2) - 1 )
+
+    m_funcion_jacobiana_x[11][11] = (lambda U,V: (U[12] / 2) + 3.5 )
+    m_funcion_jacobiana_x[11][12] = (lambda U,V: (U[11] / 2) - 1 )
+    m_funcion_jacobiana_x[11][18] = (lambda U,V: -1*(V[11] / 2) - 1 )
+    m_funcion_jacobiana_x[11][6] = (lambda U,V: -1*(V[11] / 2) - 1 )
+
+    m_funcion_jacobiana_x[12][12] = (lambda U,V: (1/2)*(U[13] - U[11]) + 4 )
+    m_funcion_jacobiana_x[12][13] = (lambda U,V: (U[12] / 2) - 1 )
+    m_funcion_jacobiana_x[12][11] = (lambda U,V: -1*(U[12] / 2) - 1 )
+    m_funcion_jacobiana_x[12][19] = (lambda U,V: (V[11] / 2) - 1 )
+
+    m_funcion_jacobiana_x[13][13] = (lambda U,V: (1/2)*(U[14] - U[12]) + 4 )
+    m_funcion_jacobiana_x[13][14] = (lambda U,V: (U[13] / 2) - 1 )
+    m_funcion_jacobiana_x[13][12] = (lambda U,V: -1*(U[13] / 2) - 1 )
+    m_funcion_jacobiana_x[13][20] = (lambda U,V: (V[13] / 2) - 1 )
+
+    m_funcion_jacobiana_x[14][14] = (lambda U,V: (1/2)*(U[15] - U[13]) + 4 )
+    m_funcion_jacobiana_x[14][15] = (lambda U,V: (U[14] / 2) - 1 )
+    m_funcion_jacobiana_x[14][13] = (lambda U,V: -1*(U[14] / 2) - 1 )
+
+    m_funcion_jacobiana_x[15][15] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[15][16] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[15][14] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[15][7] = (lambda U,V: -1*(V[15] / 2) - 1 )
+    
+    m_funcion_jacobiana_x[16][16] = (lambda U,V: (1/2)*(U[17] - U[15]) + 4 )
+    m_funcion_jacobiana_x[16][17] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[16][15] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[16][8] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[17][17] = (lambda U,V: -1*(U[16] / 2) + 4 )
+    m_funcion_jacobiana_x[17][16] = (lambda U,V: -1*(U[17] / 2) - 1 )
+    m_funcion_jacobiana_x[17][21] = (lambda U,V: (V[17] / 2) - 1 )
+    m_funcion_jacobiana_x[17][9] = (lambda U,V: -1*(V[17] / 2) - 1 )
+
+    m_funcion_jacobiana_x[18][18] = (lambda U,V: (U[19] / 2) + 3.5 )
+    m_funcion_jacobiana_x[18][19] = (lambda U,V: (U[18] / 2) - 1 )
+    m_funcion_jacobiana_x[18][22] = (lambda U,V: (V[18] / 2) - 1 )
+    m_funcion_jacobiana_x[18][11] = (lambda U,V: -1*(V[18] / 2) - 1 )
+    
+    m_funcion_jacobiana_x[19][19] = (lambda U,V: (1/2)*(U[20] - U[18]) + 4 )
+    m_funcion_jacobiana_x[19][20] = (lambda U,V: (U[19] / 2) - 1 )
+    m_funcion_jacobiana_x[19][18] = (lambda U,V: -1*(U[19] / 2) - 1 )
+    m_funcion_jacobiana_x[19][23] = (lambda U,V: (V[19] / 2) - 1 )
+    m_funcion_jacobiana_x[19][12] = (lambda U,V: -1*(V[19] / 2) - 1 )
+
+    m_funcion_jacobiana_x[20][20] = (lambda U,V: -1*(U[19] / 2) + 4 )
+    m_funcion_jacobiana_x[20][19] = (lambda U,V: -1*(U[20] / 2) - 1 )
+    m_funcion_jacobiana_x[20][24] = (lambda U,V: (V[20] / 2) - 1 )
+    m_funcion_jacobiana_x[20][13] = (lambda U,V: -1*(V[20] / 2) - 1 )
+
+    m_funcion_jacobiana_x[21][21] = (lambda U,V:  4 )
+    m_funcion_jacobiana_x[21][25] = (lambda U,V: (V[21] / 2) - 1 )
+    m_funcion_jacobiana_x[21][17] = (lambda U,V: -1*(V[21] / 2) - 1 )
+
+    m_funcion_jacobiana_x[22][22] = (lambda U,V: (U[23] / 2) + 3.5 )
+    m_funcion_jacobiana_x[22][23] = (lambda U,V: (U[22] / 2) - 1 )
+    m_funcion_jacobiana_x[22][27] = (lambda U,V: (V[22] / 2) - 1 )
+    m_funcion_jacobiana_x[22][18] = (lambda U,V: -1*(V[22] / 2) - 1 )
+    
+    m_funcion_jacobiana_x[23][23] = (lambda U,V: (1/2)*(U[24] - U[22]) + 4 )
+    m_funcion_jacobiana_x[23][24] = (lambda U,V: (U[23] / 2) - 1 )
+    m_funcion_jacobiana_x[23][22] = (lambda U,V: -1*(U[23] / 2) - 1 )
+    m_funcion_jacobiana_x[23][28] = (lambda U,V: (V[23] / 2) - 1 )
+    m_funcion_jacobiana_x[23][19] = (lambda U,V: -1*(V[23] / 2) - 1 )
+
+    m_funcion_jacobiana_x[24][24] = (lambda U,V: -1*(U[23] / 2) + 4 )
+    m_funcion_jacobiana_x[24][23] = (lambda U,V: -1*(U[14] / 2) - 1 )
+    m_funcion_jacobiana_x[24][29] = (lambda U,V: (V[24] / 2) - 1 )
+    m_funcion_jacobiana_x[24][20] = (lambda U,V: -1*(V[24] / 2) - 1 )
+
+    m_funcion_jacobiana_x[25][25] = (lambda U,V: (U[26] / 2) + 4 )
+    m_funcion_jacobiana_x[25][26] = (lambda U,V: (U[25] / 2) - 1 )
+    m_funcion_jacobiana_x[25][30] = (lambda U,V: (V[25] / 2) - 1 )
+    m_funcion_jacobiana_x[25][21] = (lambda U,V: -1*(V[25] / 2) - 1 )
+
+    m_funcion_jacobiana_x[26][26] = (lambda U,V: -1*(U[25] / 2) + 4 )
+    m_funcion_jacobiana_x[26][25] = (lambda U,V: -1*(U[26] / 2) - 1 )
+    m_funcion_jacobiana_x[26][31] = (lambda U,V: (V[26] / 2) - 1 )
+    
+    m_funcion_jacobiana_x[27][27] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[27][28] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[27][33] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[27][22] = (lambda U,V: -1*(V[15] / 2) - 1 )
+    #Quede aqui P28
+    
+    m_funcion_jacobiana_x[28][28] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[28][29] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[28][27] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[28][34] = (lambda U,V: -1*(V[15] / 2) - 1 )
+    m_funcion_jacobiana_x[28][23] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[29][29] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[29][28] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[29][34] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[29][24] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[30][30] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[30][31] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[30][36] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[30][25] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[31][31] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[31][32] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[31][30] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[31][37] = (lambda U,V: -1*(V[15] / 2) - 1 )
+    m_funcion_jacobiana_x[31][26] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[32][32] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[32][31] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[32][38] = (lambda U,V: -1*(U[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[33][33] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[33][34] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[33][27] = (lambda U,V: -1*(U[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[34][34] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[34][35] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[34][33] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[34][28] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[35][35] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[35][34] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[35][29] = (lambda U,V: -1*(U[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[36][36] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[36][37] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[36][30] = (lambda U,V: -1*(U[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[37][37] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[37][38] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[37][36] = (lambda U,V: -1*(U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[37][31] = (lambda U,V: -1*(V[15] / 2) - 1 )
+
+    m_funcion_jacobiana_x[38][38] = (lambda U,V: (1/2)*(U[16] - U[14]) + 4 )
+    m_funcion_jacobiana_x[38][37] = (lambda U,V: (U[15] / 2) - 1 )
+    m_funcion_jacobiana_x[38][32] = (lambda U,V: -1*(U[15] / 2) - 1 )
 
     x0 = np.ones(39)
     y0 = np.ones(39)
