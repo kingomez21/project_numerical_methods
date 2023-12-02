@@ -50,10 +50,10 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
             diferencia[i] = np.abs(nuevo - X[i]) # Es para calcular el error
             X[i] = nuevo
 
-        print(f'Iteración {itera}')
-        print(X)
+        #print(f'Iteración {itera}')
+        #print(X)
         test = np.dot(A, X)
-        print(test)
+        #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
 
@@ -63,7 +63,7 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
 
     return X
 
-def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
+def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 17):
     iter = 0
     n = A.shape[0]
     x = np.zeros(n)
@@ -79,7 +79,7 @@ def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
         r = r_new
         iter = iter + 1
         #print(r)
-    return (x, iter)
+    return [x, iter]
 
 def jacobi(a,b,x):
 	n=len(x)
@@ -104,10 +104,17 @@ def jacobim(a,b):
         d=np.linalg.norm(np.array(x)-np.array(t),np.inf)
             #print ("Para la iteración "+str(k+1)+": X = "+str(np.transpose(x.round(7)))+"\tError: "+str(abs(d)))
         if d<e:
-            return [x,k]
+            result = []
+            print(x)
+            for i in range(len(x)):
+                 result.append(x[i])
+            return [result, k]
+            
         else:
             t=x.copy()
     return [[],m]
+
+
 
 if __name__ == "__main__":
 
@@ -118,18 +125,25 @@ if __name__ == "__main__":
     diferencia = np.ones(39, dtype = float)
     errado = 2*tolera
     iter = 0
-    iteramax = 13
-
+    iteramax = 20
+    #iteramax = 16
+    #print(x0)
     while np.linalg.norm(x0) > tolera and np.linalg.norm(y0) > tolera and iter <= iteramax:
         funciones_pobladas_x = poblar_funciones(m_x(), x0, y0)
         jacobiano_poblado_x = poblar_jacobiano(m_j_x(), x0, y0)
        
         gauss_seidel = resolver_gaus_seidel(jacobiano_poblado_x, -funciones_pobladas_x)
+        #other_gauss_seidel = gaussSeidel(jacobiano_poblado_x, -funciones_pobladas_x)
         #[x, i] = conjugate_gradient(jacobiano_poblado_x, -funciones_pobladas_x)
-        #[x, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
+        #[m_jacobi, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
+        #gc2 = gradienteConjugado(jacobiano_poblado_x, -funciones_pobladas_x)
 
         x0 = x0 - gauss_seidel
-        
+        #x0 = x0 - other_gauss_seidel
+        #x0 = x0 - m_jacobi
+        #x0 = x0 - gc2
+        #x0 = x0 - x
+
         iter = iter + 1
         print(f'Iteración {iter}:')
         print(np.linalg.norm(x0))
@@ -147,7 +161,17 @@ if __name__ == "__main__":
         [1, x0[33], x0[34], x0[35], 0, 0, 0, x0[36], x0[37], x0[38], 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
+    """
+    yiter = []
+    for i in range(39):
+         yiter.append(i)
 
+    plt.plot(x0,yiter,'r')
+    plt.title('Método de Newton-Raphson')
+    plt.xlabel("Numéro de iteraciones")
+    plt.ylabel("Valor de X")
+    plt.show()
+    """
     
     plt.figure()
     plt.imshow(Solucion1)
