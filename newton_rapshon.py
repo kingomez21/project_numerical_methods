@@ -50,17 +50,18 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
             diferencia[i] = np.abs(nuevo - X[i]) # Es para calcular el error
             X[i] = nuevo
 
-        print(f'Iteración {itera}')
-        print(X)
+        #print(f'Iteración {itera}')
+        #print(X)
         test = np.dot(A, X)
-        print(test)
+        #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
+    
 
     # revisa convergencia
     if (itera > iteramax):
         X = 0
-
+    print("Los valores obtenidos por Gauss Seidel {}".format(X))
     return X
 
 def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
@@ -79,6 +80,8 @@ def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
         r = r_new
         iter = iter + 1
         #print(r)
+    #print(x)
+    #print("Valores de gradiente conjugado {}".format(x))
     return (x, iter)
 
 def jacobi(a,b,x):
@@ -129,6 +132,7 @@ if __name__ == "__main__":
         #[x, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
 
         x0 = x0 - gauss_seidel
+        #x0 = x0 - x
         
         iter = iter + 1
         print(f'Iteración {iter}:')
