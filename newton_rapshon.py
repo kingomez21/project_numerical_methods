@@ -1,6 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 from matriz_d_x import m_x, m_j_x
+from matriz_d_y import m_y, m_j_y
 
 
 def poblar_funciones(matriz_funciones, X, Y):
@@ -50,10 +51,10 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
             diferencia[i] = np.abs(nuevo - X[i]) # Es para calcular el error
             X[i] = nuevo
 
-        print(f'Iteración {itera}')
-        print(X)
+        #print(f'Iteración {itera}')
+        #print(X)
         test = np.dot(A, X)
-        print(test)
+        #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
 
@@ -63,7 +64,7 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
 
     return X
 
-def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
+def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 17):
     iter = 0
     n = A.shape[0]
     x = np.zeros(n)
@@ -79,7 +80,7 @@ def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
         r = r_new
         iter = iter + 1
         #print(r)
-    return (x, iter)
+    return [x, iter]
 
 def jacobi(a,b,x):
 	n=len(x)
@@ -104,10 +105,17 @@ def jacobim(a,b):
         d=np.linalg.norm(np.array(x)-np.array(t),np.inf)
             #print ("Para la iteración "+str(k+1)+": X = "+str(np.transpose(x.round(7)))+"\tError: "+str(abs(d)))
         if d<e:
-            return [x,k]
+            result = []
+            print(x)
+            for i in range(len(x)):
+                 result.append(x[i])
+            return [result, k]
+            
         else:
             t=x.copy()
     return [[],m]
+
+
 
 if __name__ == "__main__":
 
@@ -118,24 +126,36 @@ if __name__ == "__main__":
     diferencia = np.ones(39, dtype = float)
     errado = 2*tolera
     iter = 0
-    iteramax = 13
+    iteramax = 4
 
     while np.linalg.norm(x0) > tolera and np.linalg.norm(y0) > tolera and iter <= iteramax:
         funciones_pobladas_x = poblar_funciones(m_x(), x0, y0)
         jacobiano_poblado_x = poblar_jacobiano(m_j_x(), x0, y0)
-       
-        gauss_seidel = resolver_gaus_seidel(jacobiano_poblado_x, -funciones_pobladas_x)
-        #[x, i] = conjugate_gradient(jacobiano_poblado_x, -funciones_pobladas_x)
-        #[x, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
 
-        x0 = x0 - gauss_seidel
+        funciones_pobladas_y = poblar_funciones(m_y(), x0, y0)
+        jacobiano_poblado_y = poblar_jacobiano(m_j_y(), x0, y0)
+       
+        gauss_seidel_x = resolver_gaus_seidel(jacobiano_poblado_x, -funciones_pobladas_x)
+        gauss_seidel_y = resolver_gaus_seidel(jacobiano_poblado_y, -funciones_pobladas_y)
+
+
+        #[x, i] = conjugate_gradient(jacobiano_poblado_x, -funciones_pobladas_x)
+        #[m_jacobi, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
+        #gc2 = gradienteConjugado(jacobiano_poblado_x, -funciones_pobladas_x)
+
+
+        x0 = x0 - gauss_seidel_x
+        y0 = y0 - gauss_seidel_y
         
         iter = iter + 1
         print(f'Iteración {iter}:')
-        print(np.linalg.norm(x0))
-        print(x0)
+#        print(np.linalg.norm(x0))
+#        print(x0)
+        print(np.linalg.norm(y0))
+        print(y0)
         print('---------------------')
 
+        
     Solucion1 = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, x0[0], 0, 0, 0, x0[1], x0[2], x0[3], x0[4], x0[5], 0],
@@ -147,10 +167,22 @@ if __name__ == "__main__":
         [1, x0[33], x0[34], x0[35], 0, 0, 0, x0[36], x0[37], x0[38], 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
+    
+    Solucion2 = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, y0[0], 0, 0, 0, y0[1], y0[2], y0[3], y0[4], y0[5], 0],
+        [0, y0[6], 0, 0, 0, y0[7], y0[8], y0[9], y0[10], 0, 0],
+        [0, y0[11], y0[12], y0[13], y0[14], y0[15], y0[16], y0[17], 0, 0, 0],
+        [0, y0[18], y0[19], y0[20], 0, 0, 0, y0[21], 0, 0, 0],
+        [0, y0[22], y0[23], y0[24], 0, 0, 0, y0[25], y0[26], 0, 0],
+        [0, y0[27], y0[28], y0[29], 0, 0, 0, y0[30], y0[31], y0[32], 0],
+        [0, y0[33], y0[34], y0[35], 0, 0, 0, y0[36], y0[37], y0[38], 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
 
     
     plt.figure()
-    plt.imshow(Solucion1)
+    plt.imshow(Solucion2)
     plt.title( "2-D Heat Map" )
     plt.colorbar()
     plt.show()
