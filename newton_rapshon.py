@@ -57,11 +57,12 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
         #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
+    
 
     # revisa convergencia
     if (itera > iteramax):
         X = 0
-
+    print("Los valores obtenidos por Gauss Seidel {}".format(X))
     return X
 
 def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 17):
@@ -186,4 +187,3 @@ if __name__ == "__main__":
     plt.title( "2-D Heat Map" )
     plt.colorbar()
     plt.show()
-    
