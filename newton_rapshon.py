@@ -51,10 +51,10 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
             diferencia[i] = np.abs(nuevo - X[i]) # Es para calcular el error
             X[i] = nuevo
 
-        print(f'Iteración {itera}')
-        print(X)
+        #print(f'Iteración {itera}')
+        #print(X)
         test = np.dot(A, X)
-        print(test)
+        #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
 
@@ -64,7 +64,7 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
 
     return X
 
-def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
+def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 17):
     iter = 0
     n = A.shape[0]
     x = np.zeros(n)
@@ -80,7 +80,7 @@ def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 13):
         r = r_new
         iter = iter + 1
         #print(r)
-    return (x, iter)
+    return [x, iter]
 
 def jacobi(a,b,x):
 	n=len(x)
@@ -105,10 +105,17 @@ def jacobim(a,b):
         d=np.linalg.norm(np.array(x)-np.array(t),np.inf)
             #print ("Para la iteración "+str(k+1)+": X = "+str(np.transpose(x.round(7)))+"\tError: "+str(abs(d)))
         if d<e:
-            return [x,k]
+            result = []
+            print(x)
+            for i in range(len(x)):
+                 result.append(x[i])
+            return [result, k]
+            
         else:
             t=x.copy()
     return [[],m]
+
+
 
 if __name__ == "__main__":
 
@@ -131,8 +138,11 @@ if __name__ == "__main__":
         gauss_seidel_x = resolver_gaus_seidel(jacobiano_poblado_x, -funciones_pobladas_x)
         gauss_seidel_y = resolver_gaus_seidel(jacobiano_poblado_y, -funciones_pobladas_y)
 
+
         #[x, i] = conjugate_gradient(jacobiano_poblado_x, -funciones_pobladas_x)
-        #[x, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
+        #[m_jacobi, k] = jacobim(jacobiano_poblado_x, -funciones_pobladas_x)
+        #gc2 = gradienteConjugado(jacobiano_poblado_x, -funciones_pobladas_x)
+
 
         x0 = x0 - gauss_seidel_x
         y0 = y0 - gauss_seidel_y
@@ -157,6 +167,7 @@ if __name__ == "__main__":
         [1, x0[33], x0[34], x0[35], 0, 0, 0, x0[36], x0[37], x0[38], 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
+    
     Solucion2 = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, y0[0], 0, 0, 0, y0[1], y0[2], y0[3], y0[4], y0[5], 0],
@@ -168,6 +179,7 @@ if __name__ == "__main__":
         [0, y0[33], y0[34], y0[35], 0, 0, 0, y0[36], y0[37], y0[38], 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
+
     
     plt.figure()
     plt.imshow(Solucion2)
