@@ -2,7 +2,97 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matriz_d_x import m_x, m_j_x
 from matriz_d_y import m_y, m_j_y
+from interpolacion_d_x import funcion_ui_x
+from interpolacion_d_y import funcion_vi_y
 
+def polinomio_resultante_d_x(x0, v_x, v_y):
+
+    result = ( (funcion_ui_x[0](v_x)
+                *( 
+                   x0[0]*funcion_vi_y[0](v_y) + 
+                   x0[6]*funcion_vi_y[1](v_y) +
+                   x0[11]*funcion_vi_y[2](v_y) +
+                   x0[18]*funcion_vi_y[3](v_y) +
+                   x0[22]*funcion_vi_y[4](v_y) +
+                   x0[27]*funcion_vi_y[5](v_y) +
+                   x0[33]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) + 
+                  (funcion_ui_x[1](v_x)
+                *( 
+                   x0[1]*funcion_vi_y[0](v_y) + 
+                   x0[7]*funcion_vi_y[1](v_y) +
+                   x0[12]*funcion_vi_y[2](v_y) +
+                   x0[19]*funcion_vi_y[3](v_y) +
+                   x0[23]*funcion_vi_y[4](v_y) +
+                   x0[28]*funcion_vi_y[5](v_y) +
+                   x0[34]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) +
+                  (funcion_ui_x[2](v_x)
+                *( 
+                   x0[3]*funcion_vi_y[0](v_y) + 
+                   x0[8]*funcion_vi_y[1](v_y) +
+                   x0[13]*funcion_vi_y[2](v_y) +
+                   x0[20]*funcion_vi_y[3](v_y) +
+                   x0[24]*funcion_vi_y[4](v_y) +
+                   x0[29]*funcion_vi_y[5](v_y) +
+                   x0[35]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) + 
+                  (funcion_ui_x[3](v_x)
+                *( 
+                   x0[4]*funcion_vi_y[0](v_y) + 
+                   x0[9]*funcion_vi_y[1](v_y) +
+                   x0[14]*funcion_vi_y[2](v_y) +
+                   x0[21]*funcion_vi_y[3](v_y) +
+                   x0[25]*funcion_vi_y[4](v_y) +
+                   x0[30]*funcion_vi_y[5](v_y) +
+                   x0[36]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) + 
+                 (funcion_ui_x[4](v_x)
+                *( 
+                   x0[5]*funcion_vi_y[0](v_y) + 
+                   x0[10]*funcion_vi_y[1](v_y) +
+                   x0[15]*funcion_vi_y[2](v_y) +
+                   x0[22]*funcion_vi_y[3](v_y) +
+                   x0[26]*funcion_vi_y[4](v_y) +
+                   x0[31]*funcion_vi_y[5](v_y) +
+                   x0[37]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) + 
+                 (funcion_ui_x[5](v_x)
+                *( 
+                   x0[6]*funcion_vi_y[0](v_y) + 
+                   x0[11]*funcion_vi_y[1](v_y) +
+                   x0[16]*funcion_vi_y[2](v_y) +
+                   x0[23]*funcion_vi_y[3](v_y) +
+                   x0[27]*funcion_vi_y[4](v_y) +
+                   x0[32]*funcion_vi_y[5](v_y) +
+                   x0[38]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )) + 
+                 (funcion_ui_x[6](v_x)
+                *( 
+                   x0[7]*funcion_vi_y[0](v_y) + 
+                   x0[12]*funcion_vi_y[1](v_y) +
+                   x0[17]*funcion_vi_y[2](v_y) +
+                   x0[24]*funcion_vi_y[3](v_y) +
+                   x0[28]*funcion_vi_y[4](v_y) +
+                   x0[33]*funcion_vi_y[5](v_y) +
+                   x0[38]*funcion_vi_y[6](v_y) 
+                   #x0[0]*funcion_vi_y[7](v_y) +
+                   #x0[0]*funcion_vi_y[8](v_y) 
+                 )))
+
+    return result
 
 def poblar_funciones(matriz_funciones, X, Y):
     nueva_matriz_funciones = list()
@@ -57,11 +147,12 @@ def resolver_gaus_seidel(A, B, iteramax = 25):
         #print(test)
         errado = np.max(diferencia)
         itera = itera + 1
+    
 
     # revisa convergencia
     if (itera > iteramax):
         X = 0
-
+    #print("Los valores obtenidos por Gauss Seidel {}".format(X))
     return X
 
 def conjugate_gradient(A, b, tolera = 1e-5, iteramax = 17):
@@ -148,18 +239,41 @@ if __name__ == "__main__":
         y0 = y0 - gauss_seidel_y
         
         iter = iter + 1
-        print(f'Iteración {iter}:')
+        #print(f'Iteración {iter}:')
 #        print(np.linalg.norm(x0))
 #        print(x0)
-        print(np.linalg.norm(y0))
-        print(y0)
-        print('---------------------')
+        #print(np.linalg.norm(y0))
+        #print(y0)
+        #print('---------------------')
 
-        
+    result = [
+         polinomio_resultante_d_x(x0, 0, 0),
+         polinomio_resultante_d_x(x0, 1, 0),
+         polinomio_resultante_d_x(x0, 2, 0),
+         polinomio_resultante_d_x(x0, 3, 0),
+         polinomio_resultante_d_x(x0, 4, 0),
+         polinomio_resultante_d_x(x0, 5, 0),
+         polinomio_resultante_d_x(x0, 6, 0),
+         polinomio_resultante_d_x(x0, 7, 0),
+         polinomio_resultante_d_x(x0, 8, 0),
+         polinomio_resultante_d_x(x0, 9, 0),
+         polinomio_resultante_d_x(x0, 10, 0),
+         polinomio_resultante_d_x(x0, 2, 1),
+         polinomio_resultante_d_x(x0, 3, 1),
+         polinomio_resultante_d_x(x0, 4, 1),
+         polinomio_resultante_d_x(x0, 10, 1),
+         polinomio_resultante_d_x(x0, 2, 2),
+         polinomio_resultante_d_x(x0, 3, 2),
+         polinomio_resultante_d_x(x0, 4, 2),
+         polinomio_resultante_d_x(x0, 10, 2),
+    ]
+
+    print(result)
+
     Solucion1 = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [1, x0[0], 0, 0, 0, x0[1], x0[2], x0[3], x0[4], x0[5], 0],
-        [1, x0[6], 0, 0, 0, x0[7], x0[8], x0[9], x0[10], 0, 0],
+        [result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10]],
+        [1, x0[0], result[11], result[12], result[13], x0[1], x0[2], x0[3], x0[4], x0[5], result[14]],
+        [1, x0[6], result[15], result[16], result[17], x0[7], x0[8], x0[9], x0[10], result[18], 0],
         [1, x0[11], x0[12], x0[13], x0[14], x0[15], x0[16], x0[17], 0, 0, 0],
         [1, x0[18], x0[19], x0[20], 0, 0, 0, x0[21], 0, 0, 0],
         [1, x0[22], x0[23], x0[24], 0, 0, 0, x0[25], x0[26], 0, 0],
@@ -182,8 +296,7 @@ if __name__ == "__main__":
 
     
     plt.figure()
-    plt.imshow(Solucion2)
+    plt.imshow(Solucion1)
     plt.title( "2-D Heat Map" )
     plt.colorbar()
     plt.show()
-    
